@@ -154,6 +154,10 @@ api.relation.delete(source=obj_a, relationship="relatedItems")
   - To run tests **once** (non-interactive, no watch mode) and dump full output: `CI=true make test src/addons/volto-cca-policy`
 - **Acceptance:** Cypress tests live in the add-on and can be run via the add-on's Makefile targets (`cypress-run`, `cypress-open`).
 
+## Operations
+
+- **Never delete heavy directories** (e.g. `frontend/`, `backend/`, `node_modules/`). When replacing a directory with a submodule or restructuring, **move it aside first** (`mv frontend frontend.bak`), then proceed. Restore or clean up only after confirming success.
+
 ## Conventions & Constraints
 
 - **Do not read `frontend/start_*` scripts.** They contain sensitive environment variables.
