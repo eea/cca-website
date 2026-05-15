@@ -164,6 +164,22 @@ api.relation.delete(source=obj_a, relationship="relatedItems")
 - Backend commands that need the full Plone environment must run **inside the backend Docker container** (the developer runs Plone in the foreground from within the container).
 - The frontend is run **on the host** in a separate terminal, in the foreground.
 - **Source Control & PRs**: All Pull Requests (PRs) should target the `develop` branch.
+
+## Git Submodules — Frontend Add-ons
+
+Each frontend add-on under `frontend/src/addons/` is tracked as its **own git repository** (submodule). The root repo cannot stage, commit, or push changes inside them directly.
+
+**Always `cd` into the add-on directory before running any git commands:**
+
+```bash
+# Example: commit and push changes in volto-cca-policy
+cd frontend/src/addons/volto-cca-policy
+git add -A
+git commit -m "fix: resolve react-intl warnings in tests"
+git push
+```
+
+This applies to all add-ons: `volto-cca-policy`, and any others under `frontend/src/addons/`.
 - **Shadowing**: When shadowing core components (e.g., in `src/customizations/`), always include a `README.md` file in the same directory explaining what was modified and why.
 - The repo uses `yarn` (not `npm`) and `mrs-developer` for add-on management.
 - Python code follows Plone standards (black, isort, codespell via `tox -e lint`).
